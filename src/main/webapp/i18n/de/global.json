@@ -137,5 +137,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "Copyright @ Processmining 2020default accounts"
+  "footer": "Copyright @ Processmining 2020"
 }
