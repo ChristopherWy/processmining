@@ -1,0 +1,18 @@
+entity Process {
+	name String required,
+	code String required
+}
+
+entity ProcessExecution {
+	processName String required,
+    execution String required
+}
+
+relationship ManyToOne {
+	ProcessExecution{processName} to Process
+}
+
+paginate Process, ProcessExecution with pagination
+
+service all with serviceImpl except Process, ProcessExecution
+
