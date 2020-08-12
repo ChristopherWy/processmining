@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity ProcessExecution.
+    -->
+    <changeSet id="20200812163740-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="process_name_id"
+                                 baseTableName="process_execution"
+                                 constraintName="fk_process_execution_process_name_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="process"/>
+
+    </changeSet>
+</databaseChangeLog>

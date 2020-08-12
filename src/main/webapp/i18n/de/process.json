@@ -1,0 +1,23 @@
+{
+  "processminingApp": {
+    "process": {
+      "home": {
+        "title": "Processes",
+        "createLabel": "Process erstellen",
+        "createOrEditLabel": "Process erstellen oder bearbeiten",
+        "notFound": "No Processes found"
+      },
+      "created": "Process erstellt mit ID {{ param }}",
+      "updated": "Process aktualisiert mit ID {{ param }}",
+      "deleted": "Process gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Process {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Process"
+      },
+      "name": "Name",
+      "code": "Code"
+    }
+  }
+}
