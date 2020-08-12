@@ -1,0 +1,24 @@
+{
+  "processminingApp": {
+    "processExecution": {
+      "home": {
+        "title": "Process Executions",
+        "createLabel": "Process Execution erstellen",
+        "createOrEditLabel": "Process Execution erstellen oder bearbeiten",
+        "notFound": "No Process Executions found"
+      },
+      "created": "Process Execution erstellt mit ID {{ param }}",
+      "updated": "Process Execution aktualisiert mit ID {{ param }}",
+      "deleted": "Process Execution gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Process Execution {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Process Execution"
+      },
+      "processName": "Process Name",
+      "execution": "Execution",
+      "processName": "Process Name"
+    }
+  }
+}

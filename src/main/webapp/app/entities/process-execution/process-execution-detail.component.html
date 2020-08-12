@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="processExecution">
+            <h2><span jhiTranslate="processminingApp.processExecution.detail.title">Process Execution</span> {{ processExecution.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="processminingApp.processExecution.processName">Process Name</span></dt>
+                <dd>
+                    <span>{{ processExecution.processName }}</span>
+                </dd>
+                <dt><span jhiTranslate="processminingApp.processExecution.execution">Execution</span></dt>
+                <dd>
+                    <span>{{ processExecution.execution }}</span>
+                </dd>
+                <dt><span jhiTranslate="processminingApp.processExecution.processName">Process Name</span></dt>
+                <dd>
+                    <div *ngIf="processExecution.processName">
+                        <a [routerLink]="['/process', processExecution.processName?.id, 'view']">{{ processExecution.processName?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/process-execution', processExecution.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

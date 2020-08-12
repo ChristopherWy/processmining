@@ -1,0 +1,39 @@
+{
+  "name": "ProcessExecution",
+  "fields": [
+    {
+      "fieldName": "processName",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "execution",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "process",
+      "otherEntityRelationshipName": "processExecution",
+      "relationshipName": "processName",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200812163740",
+  "entityTableName": "process_execution",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

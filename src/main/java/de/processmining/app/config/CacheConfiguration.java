@@ -47,6 +47,8 @@ public class CacheConfiguration {
             createCache(cm, de.processmining.app.domain.User.class.getName());
             createCache(cm, de.processmining.app.domain.Authority.class.getName());
             createCache(cm, de.processmining.app.domain.User.class.getName() + ".authorities");
+            createCache(cm, de.processmining.app.domain.Process.class.getName());
+            createCache(cm, de.processmining.app.domain.ProcessExecution.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
