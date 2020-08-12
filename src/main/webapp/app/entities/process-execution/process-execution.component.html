@@ -23,20 +23,18 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="processName"><span jhiTranslate="processminingApp.processExecution.processName">Process Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="execution"><span jhiTranslate="processminingApp.processExecution.execution">Execution</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="processName.id"><span jhiTranslate="processminingApp.processExecution.processName">Process Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name.id"><span jhiTranslate="processminingApp.processExecution.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let processExecution of processExecutions ;trackBy: trackId">
                     <td><a [routerLink]="['/process-execution', processExecution.id, 'view']">{{ processExecution.id }}</a></td>
-                    <td>{{ processExecution.processName }}</td>
                     <td>{{ processExecution.execution }}</td>
                     <td>
-                        <div *ngIf="processExecution.processName">
-                            <a [routerLink]="['/process', processExecution.processName?.id, 'view']" >{{ processExecution.processName?.id }}</a>
+                        <div *ngIf="processExecution.name">
+                            <a [routerLink]="['/process', processExecution.name?.id, 'view']" >{{ processExecution.name?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">

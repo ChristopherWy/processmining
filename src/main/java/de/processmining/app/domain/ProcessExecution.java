@@ -25,16 +25,12 @@ public class ProcessExecution implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "process_name", nullable = false)
-    private String processName;
-
-    @NotNull
     @Column(name = "execution", nullable = false)
     private String execution;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "processExecutions", allowSetters = true)
-    private Process processName;
+    private Process name;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -43,19 +39,6 @@ public class ProcessExecution implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getProcessName() {
-        return processName;
-    }
-
-    public ProcessExecution processName(String processName) {
-        this.processName = processName;
-        return this;
-    }
-
-    public void setProcessName(String processName) {
-        this.processName = processName;
     }
 
     public String getExecution() {
@@ -71,17 +54,17 @@ public class ProcessExecution implements Serializable {
         this.execution = execution;
     }
 
-    public Process getProcessName() {
-        return processName;
+    public Process getName() {
+        return name;
     }
 
-    public ProcessExecution processName(Process process) {
-        this.processName = process;
+    public ProcessExecution name(Process process) {
+        this.name = process;
         return this;
     }
 
-    public void setProcessName(Process process) {
-        this.processName = process;
+    public void setName(Process process) {
+        this.name = process;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -106,7 +89,6 @@ public class ProcessExecution implements Serializable {
     public String toString() {
         return "ProcessExecution{" +
             "id=" + getId() +
-            ", processName='" + getProcessName() + "'" +
             ", execution='" + getExecution() + "'" +
             "}";
     }

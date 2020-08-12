@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(ProcessExecutionService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new ProcessExecution(0, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new ProcessExecution(0, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -54,7 +54,6 @@ describe('Service Tests', () => {
       it('should update a ProcessExecution', () => {
         const returnedFromService = Object.assign(
           {
-            processName: 'BBBBBB',
             execution: 'BBBBBB',
           },
           elemDefault
@@ -72,7 +71,6 @@ describe('Service Tests', () => {
       it('should return a list of ProcessExecution', () => {
         const returnedFromService = Object.assign(
           {
-            processName: 'BBBBBB',
             execution: 'BBBBBB',
           },
           elemDefault

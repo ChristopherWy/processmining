@@ -12,18 +12,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="processminingApp.processExecution.processName" for="field_processName">Process Name</label>
-                    <input type="text" class="form-control" name="processName" id="field_processName"
-                           formControlName="processName"/>
-                    <div *ngIf="editForm.get('processName')!.invalid && (editForm.get('processName')!.dirty || editForm.get('processName')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('processName')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="processminingApp.processExecution.execution" for="field_execution">Execution</label>
                     <input type="text" class="form-control" name="execution" id="field_execution"
                            formControlName="execution"/>
@@ -36,10 +24,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="processminingApp.processExecution.processName" for="field_processName">Process Name</label>
-                    <select class="form-control" id="field_processName" name="processName" formControlName="processName">
+                    <label class="form-control-label" jhiTranslate="processminingApp.processExecution.name" for="field_name">Name</label>
+                    <select class="form-control" id="field_name" name="name" formControlName="name">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="processOption.id === editForm.get('processName')!.value?.id ? editForm.get('processName')!.value : processOption" *ngFor="let processOption of processes; trackBy: trackById">{{ processOption.id }}</option>
+                        <option [ngValue]="processOption.id === editForm.get('name')!.value?.id ? editForm.get('name')!.value : processOption" *ngFor="let processOption of processes; trackBy: trackById">{{ processOption.id }}</option>
                     </select>
                 </div>
             </div>
