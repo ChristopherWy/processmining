@@ -4,12 +4,11 @@ entity Process {
 }
 
 entity ProcessExecution {
-	processName String required,
     execution String required
 }
 
 relationship ManyToOne {
-	ProcessExecution{processName} to Process
+	ProcessExecution{name} to Process
 }
 
 paginate Process, ProcessExecution with pagination

@@ -16,9 +16,8 @@
       "detail": {
         "title": "Process Execution"
       },
-      "processName": "Process Name",
       "execution": "Execution",
-      "processName": "Process Name"
+      "name": "Name"
     }
   }
 }

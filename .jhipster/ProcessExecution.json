@@ -2,13 +2,6 @@
   "name": "ProcessExecution",
   "fields": [
     {
-      "fieldName": "processName",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
       "fieldName": "execution",
       "fieldType": "String",
       "fieldValidateRules": [
@@ -21,7 +14,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "process",
       "otherEntityRelationshipName": "processExecution",
-      "relationshipName": "processName",
+      "relationshipName": "name",
       "otherEntityField": "id"
     }
   ],

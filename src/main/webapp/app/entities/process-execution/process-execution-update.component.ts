@@ -20,9 +20,8 @@ export class ProcessExecutionUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    processName: [null, [Validators.required]],
     execution: [null, [Validators.required]],
-    processName: [],
+    name: [],
   });
 
   constructor(
@@ -43,9 +42,8 @@ export class ProcessExecutionUpdateComponent implements OnInit {
   updateForm(processExecution: IProcessExecution): void {
     this.editForm.patchValue({
       id: processExecution.id,
-      processName: processExecution.processName,
       execution: processExecution.execution,
-      processName: processExecution.processName,
+      name: processExecution.name,
     });
   }
 
@@ -67,9 +65,8 @@ export class ProcessExecutionUpdateComponent implements OnInit {
     return {
       ...new ProcessExecution(),
       id: this.editForm.get(['id'])!.value,
-      processName: this.editForm.get(['processName'])!.value,
       execution: this.editForm.get(['execution'])!.value,
-      processName: this.editForm.get(['processName'])!.value,
+      name: this.editForm.get(['name'])!.value,
     };
   }
 

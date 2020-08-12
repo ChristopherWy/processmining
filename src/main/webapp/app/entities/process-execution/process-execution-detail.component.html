@@ -8,18 +8,14 @@
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="processminingApp.processExecution.processName">Process Name</span></dt>
-                <dd>
-                    <span>{{ processExecution.processName }}</span>
-                </dd>
                 <dt><span jhiTranslate="processminingApp.processExecution.execution">Execution</span></dt>
                 <dd>
                     <span>{{ processExecution.execution }}</span>
                 </dd>
-                <dt><span jhiTranslate="processminingApp.processExecution.processName">Process Name</span></dt>
+                <dt><span jhiTranslate="processminingApp.processExecution.name">Name</span></dt>
                 <dd>
-                    <div *ngIf="processExecution.processName">
-                        <a [routerLink]="['/process', processExecution.processName?.id, 'view']">{{ processExecution.processName?.id }}</a>
+                    <div *ngIf="processExecution.name">
+                        <a [routerLink]="['/process', processExecution.name?.id, 'view']">{{ processExecution.name?.id }}</a>
                     </div>
                 </dd>
             </dl>

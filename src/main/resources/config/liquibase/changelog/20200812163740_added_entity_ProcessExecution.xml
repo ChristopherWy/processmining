@@ -15,13 +15,10 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="process_name" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
             <column name="execution" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="process_name_id" type="bigint">
+            <column name="name_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -47,7 +44,6 @@
                   separator=";"
                   tableName="process_execution">
             <column name="id" type="numeric"/>
-            <column name="process_name" type="string"/>
             <column name="execution" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>

@@ -29,9 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class ProcessExecutionResourceIT {
 
-    private static final String DEFAULT_PROCESS_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_PROCESS_NAME = "BBBBBBBBBB";
-
     private static final String DEFAULT_EXECUTION = "AAAAAAAAAA";
     private static final String UPDATED_EXECUTION = "BBBBBBBBBB";
 
@@ -54,7 +51,6 @@ public class ProcessExecutionResourceIT {
      */
     public static ProcessExecution createEntity(EntityManager em) {
         ProcessExecution processExecution = new ProcessExecution()
-            .processName(DEFAULT_PROCESS_NAME)
             .execution(DEFAULT_EXECUTION);
         return processExecution;
     }
@@ -66,7 +62,6 @@ public class ProcessExecutionResourceIT {
      */
     public static ProcessExecution createUpdatedEntity(EntityManager em) {
         ProcessExecution processExecution = new ProcessExecution()
-            .processName(UPDATED_PROCESS_NAME)
             .execution(UPDATED_EXECUTION);
         return processExecution;
     }
@@ -90,7 +85,6 @@ public class ProcessExecutionResourceIT {
         List<ProcessExecution> processExecutionList = processExecutionRepository.findAll();
         assertThat(processExecutionList).hasSize(databaseSizeBeforeCreate + 1);
         ProcessExecution testProcessExecution = processExecutionList.get(processExecutionList.size() - 1);
-        assertThat(testProcessExecution.getProcessName()).isEqualTo(DEFAULT_PROCESS_NAME);
         assertThat(testProcessExecution.getExecution()).isEqualTo(DEFAULT_EXECUTION);
     }
 
@@ -113,25 +107,6 @@ public class ProcessExecutionResourceIT {
         assertThat(processExecutionList).hasSize(databaseSizeBeforeCreate);
     }
 
-
-    @Test
-    @Transactional
-    public void checkProcessNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = processExecutionRepository.findAll().size();
-        // set the field null
-        processExecution.setProcessName(null);
-
-        // Create the ProcessExecution, which fails.
-
-
-        restProcessExecutionMockMvc.perform(post("/api/process-executions")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(processExecution)))
-            .andExpect(status().isBadRequest());
-
-        List<ProcessExecution> processExecutionList = processExecutionRepository.findAll();
-        assertThat(processExecutionList).hasSize(databaseSizeBeforeTest);
-    }
 
     @Test
     @Transactional
@@ -163,7 +138,6 @@ public class ProcessExecutionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(processExecution.getId().intValue())))
-            .andExpect(jsonPath("$.[*].processName").value(hasItem(DEFAULT_PROCESS_NAME)))
             .andExpect(jsonPath("$.[*].execution").value(hasItem(DEFAULT_EXECUTION)));
     }
     
@@ -178,7 +152,6 @@ public class ProcessExecutionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(processExecution.getId().intValue()))
-            .andExpect(jsonPath("$.processName").value(DEFAULT_PROCESS_NAME))
             .andExpect(jsonPath("$.execution").value(DEFAULT_EXECUTION));
     }
     @Test
@@ -202,7 +175,6 @@ public class ProcessExecutionResourceIT {
         // Disconnect from session so that the updates on updatedProcessExecution are not directly saved in db
         em.detach(updatedProcessExecution);
         updatedProcessExecution
-            .processName(UPDATED_PROCESS_NAME)
             .execution(UPDATED_EXECUTION);
 
         restProcessExecutionMockMvc.perform(put("/api/process-executions")
@@ -214,7 +186,6 @@ public class ProcessExecutionResourceIT {
         List<ProcessExecution> processExecutionList = processExecutionRepository.findAll();
         assertThat(processExecutionList).hasSize(databaseSizeBeforeUpdate);
         ProcessExecution testProcessExecution = processExecutionList.get(processExecutionList.size() - 1);
-        assertThat(testProcessExecution.getProcessName()).isEqualTo(UPDATED_PROCESS_NAME);
         assertThat(testProcessExecution.getExecution()).isEqualTo(UPDATED_EXECUTION);
     }
 
