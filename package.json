@@ -31,12 +31,14 @@
     "rxjs": "6.5.5",
     "swagger-ui-dist": "3.25.1",
     "tslib": "2.0.0",
-    "zone.js": "0.10.3"
+    "zone.js": "0.10.2",
+    "ng2-charts": "2.3.0",
+    "chart.js": "2.9.3"
   },
   "devDependencies": {
     "@angular/cli": "10.0.0",
     "@angular/compiler-cli": "10.0.0",
-    "@ngtools/webpack": "10.0.0",
+    "@ngtools/webpack": "9.0.5",
     "@openapitools/openapi-generator-cli": "1.0.13-4.3.1",
     "@types/jest": "26.0.3",
     "@types/node": "13.13.4",

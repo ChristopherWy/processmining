@@ -19,5 +19,17 @@
                 <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
         </div>
+
+    </div>
+
+    <div style="display: block;">
+        <canvas baseChart width="250" height="250"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="'line'"
+                [plugins]="lineChartPlugins">
+        </canvas>
     </div>
 </div>
