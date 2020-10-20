@@ -24,7 +24,8 @@
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="name"><span jhiTranslate="processminingApp.process.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="code"><span jhiTranslate="processminingApp.process.code">Code</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="step"><span jhiTranslate="processminingApp.process.step">Step</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="level"><span jhiTranslate="processminingApp.process.level">Level</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -32,7 +33,8 @@
                 <tr *ngFor="let process of processes ;trackBy: trackId">
                     <td><a [routerLink]="['/process', process.id, 'view']">{{ process.id }}</a></td>
                     <td>{{ process.name }}</td>
-                    <td>{{ process.code }}</td>
+                    <td>{{ process.step }}</td>
+                    <td>{{ process.level }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

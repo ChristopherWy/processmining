@@ -18,7 +18,8 @@ export class ProcessUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    code: [null, [Validators.required]],
+    step: [null, [Validators.required]],
+    level: [null, [Validators.required]],
   });
 
   constructor(protected processService: ProcessService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -33,7 +34,8 @@ export class ProcessUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: process.id,
       name: process.name,
-      code: process.code,
+      step: process.step,
+      level: process.level,
     });
   }
 
@@ -56,7 +58,8 @@ export class ProcessUpdateComponent implements OnInit {
       ...new Process(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      code: this.editForm.get(['code'])!.value,
+      step: this.editForm.get(['step'])!.value,
+      level: this.editForm.get(['level'])!.value,
     };
   }
 

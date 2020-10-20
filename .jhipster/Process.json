@@ -9,8 +9,15 @@
       ]
     },
     {
-      "fieldName": "code",
+      "fieldName": "step",
       "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "level",
+      "fieldType": "Integer",
       "fieldValidateRules": [
         "required"
       ]

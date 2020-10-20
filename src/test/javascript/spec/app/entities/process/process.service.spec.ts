@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(ProcessService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Process(0, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Process(0, 'AAAAAAA', 'AAAAAAA', 0);
     });
 
     describe('Service methods', () => {
@@ -55,7 +55,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            code: 'BBBBBB',
+            step: 'BBBBBB',
+            level: 1,
           },
           elemDefault
         );
@@ -73,7 +74,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            code: 'BBBBBB',
+            step: 'BBBBBB',
+            level: 1,
           },
           elemDefault
         );

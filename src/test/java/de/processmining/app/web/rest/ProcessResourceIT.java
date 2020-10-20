@@ -32,8 +32,11 @@ public class ProcessResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CODE = "AAAAAAAAAA";
-    private static final String UPDATED_CODE = "BBBBBBBBBB";
+    private static final String DEFAULT_STEP = "AAAAAAAAAA";
+    private static final String UPDATED_STEP = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_LEVEL = 1;
+    private static final Integer UPDATED_LEVEL = 2;
 
     @Autowired
     private ProcessRepository processRepository;
@@ -55,7 +58,8 @@ public class ProcessResourceIT {
     public static Process createEntity(EntityManager em) {
         Process process = new Process()
             .name(DEFAULT_NAME)
-            .code(DEFAULT_CODE);
+            .step(DEFAULT_STEP)
+            .level(DEFAULT_LEVEL);
         return process;
     }
     /**
@@ -67,7 +71,8 @@ public class ProcessResourceIT {
     public static Process createUpdatedEntity(EntityManager em) {
         Process process = new Process()
             .name(UPDATED_NAME)
-            .code(UPDATED_CODE);
+            .step(UPDATED_STEP)
+            .level(UPDATED_LEVEL);
         return process;
     }
 
@@ -91,7 +96,8 @@ public class ProcessResourceIT {
         assertThat(processList).hasSize(databaseSizeBeforeCreate + 1);
         Process testProcess = processList.get(processList.size() - 1);
         assertThat(testProcess.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testProcess.getCode()).isEqualTo(DEFAULT_CODE);
+        assertThat(testProcess.getStep()).isEqualTo(DEFAULT_STEP);
+        assertThat(testProcess.getLevel()).isEqualTo(DEFAULT_LEVEL);
     }
 
     @Test
@@ -135,10 +141,29 @@ public class ProcessResourceIT {
 
     @Test
     @Transactional
-    public void checkCodeIsRequired() throws Exception {
+    public void checkStepIsRequired() throws Exception {
         int databaseSizeBeforeTest = processRepository.findAll().size();
         // set the field null
-        process.setCode(null);
+        process.setStep(null);
+
+        // Create the Process, which fails.
+
+
+        restProcessMockMvc.perform(post("/api/processes")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(process)))
+            .andExpect(status().isBadRequest());
+
+        List<Process> processList = processRepository.findAll();
+        assertThat(processList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkLevelIsRequired() throws Exception {
+        int databaseSizeBeforeTest = processRepository.findAll().size();
+        // set the field null
+        process.setLevel(null);
 
         // Create the Process, which fails.
 
@@ -164,7 +189,8 @@ public class ProcessResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(process.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE)));
+            .andExpect(jsonPath("$.[*].step").value(hasItem(DEFAULT_STEP)))
+            .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL)));
     }
     
     @Test
@@ -179,7 +205,8 @@ public class ProcessResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(process.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.code").value(DEFAULT_CODE));
+            .andExpect(jsonPath("$.step").value(DEFAULT_STEP))
+            .andExpect(jsonPath("$.level").value(DEFAULT_LEVEL));
     }
     @Test
     @Transactional
@@ -203,7 +230,8 @@ public class ProcessResourceIT {
         em.detach(updatedProcess);
         updatedProcess
             .name(UPDATED_NAME)
-            .code(UPDATED_CODE);
+            .step(UPDATED_STEP)
+            .level(UPDATED_LEVEL);
 
         restProcessMockMvc.perform(put("/api/processes")
             .contentType(MediaType.APPLICATION_JSON)
@@ -215,7 +243,8 @@ public class ProcessResourceIT {
         assertThat(processList).hasSize(databaseSizeBeforeUpdate);
         Process testProcess = processList.get(processList.size() - 1);
         assertThat(testProcess.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testProcess.getCode()).isEqualTo(UPDATED_CODE);
+        assertThat(testProcess.getStep()).isEqualTo(UPDATED_STEP);
+        assertThat(testProcess.getLevel()).isEqualTo(UPDATED_LEVEL);
     }
 
     @Test

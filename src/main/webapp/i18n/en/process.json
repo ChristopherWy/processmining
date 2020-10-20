@@ -17,7 +17,8 @@
         "title": "Process"
       },
       "name": "Name",
-      "code": "Code"
+      "step": "Step",
+      "level": "Level"
     }
   }
 }
