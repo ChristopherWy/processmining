@@ -5,10 +5,18 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-process" [routerLink]="['/process/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="processminingApp.process.home.createLabel">
-            Create a new Process
+            Create a new Process Step
             </span>
         </button>
     </h2>
+
+    <div style="display: block;">
+        <canvas baseChart
+                [datasets]="scatterChartData"
+                [options]="scatterChartOptions"
+                [chartType]="scatterChartType">
+        </canvas>
+    </div>
 
     <jhi-alert-error></jhi-alert-error>
 

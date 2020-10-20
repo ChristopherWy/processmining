@@ -10,6 +10,7 @@ import { IProcess } from 'app/shared/model/process.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ProcessService } from './process.service';
 import { ProcessDeleteDialogComponent } from './process-delete-dialog.component';
+import {ChartDataSets, ChartOptions, ChartType} from "chart.js";
 
 @Component({
   selector: 'jhi-process',
@@ -24,6 +25,80 @@ export class ProcessComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+
+  public scatterChartOptions: ChartOptions = {
+    responsive: true,
+  };
+
+  public scatterChartData: ChartDataSets[] = [
+    {
+      data: [
+        { x: 1, y: 1 }
+      ],
+      borderColor: 'blue',
+      backgroundColor: 'blue',
+      pointBorderColor: 'blue',
+      pointBackgroundColor: 'blue',
+      label: 'EMail Erstkontakt',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 1, y: 2 }
+      ],
+      borderColor: 'blue',
+      backgroundColor: 'blue',
+      pointBorderColor: 'blue',
+      pointBackgroundColor: 'blue',
+      label: 'Telefon Erstontakt',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 2, y: 1.5 }
+      ],
+      borderColor: 'green',
+      backgroundColor: 'green',
+      pointBorderColor: 'green',
+      pointBackgroundColor: 'green',
+      label: 'Beratungstermin',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 3, y: 1 }
+      ],
+      borderColor: 'red',
+      backgroundColor: 'red',
+      pointBorderColor: 'red',
+      pointBackgroundColor: 'red',
+      label: 'Verkauf',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 3, y: 2}
+      ],
+      borderColor: 'red',
+      backgroundColor: 'red',
+      pointBorderColor: 'red',
+      pointBackgroundColor: 'red',
+      label: 'Kein Verkauf',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 4, y: 1.5}
+      ],
+      borderColor: 'black',
+      backgroundColor: 'black',
+      pointBorderColor: 'black',
+      pointBackgroundColor: 'black',
+      label: 'Retour',
+      pointRadius: 10,
+    },
+  ];
+  public scatterChartType: ChartType = 'scatter';
 
   constructor(
     protected processService: ProcessService,
