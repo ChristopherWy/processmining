@@ -20,16 +20,14 @@
             </div>
         </div>
 
+        <div style="display: block;">
+            <canvas baseChart
+                    [datasets]="scatterChartData"
+                    [options]="scatterChartOptions"
+                    [chartType]="scatterChartType">
+            </canvas>
+        </div>
+
     </div>
 
-    <div style="display: block;">
-        <canvas baseChart width="250" height="250"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="'line'"
-                [plugins]="lineChartPlugins">
-        </canvas>
-    </div>
 </div>

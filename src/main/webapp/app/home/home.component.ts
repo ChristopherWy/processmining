@@ -5,7 +5,7 @@ import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 
-import { ChartDataSets } from 'chart.js';
+import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 
 @Component({
@@ -17,18 +17,79 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
 
-  public lineChartData: ChartDataSets[] = [{ data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' }];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public scatterChartOptions: ChartOptions = {
+    responsive: true,
+  };
 
-  public lineChartColors: Color[] = [
+  public scatterChartData: ChartDataSets[] = [
     {
+      data: [
+        { x: 1, y: 1 }
+      ],
+      borderColor: 'blue',
+      backgroundColor: 'blue',
+      pointBorderColor: 'blue',
+      pointBackgroundColor: 'blue',
+      label: 'EMail Erstkontakt',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 1, y: 2 }
+      ],
+      borderColor: 'blue',
+      backgroundColor: 'blue',
+      pointBorderColor: 'blue',
+      pointBackgroundColor: 'blue',
+      label: 'Telefon Erstontakt',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 2, y: 1.5 }
+      ],
+      borderColor: 'green',
+      backgroundColor: 'green',
+      pointBorderColor: 'green',
+      pointBackgroundColor: 'green',
+      label: 'Beratungstermin',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 3, y: 1 }
+      ],
+      borderColor: 'red',
+      backgroundColor: 'red',
+      pointBorderColor: 'red',
+      pointBackgroundColor: 'red',
+      label: 'Verkauf',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 3, y: 2}
+      ],
+      borderColor: 'red',
+      backgroundColor: 'red',
+      pointBorderColor: 'red',
+      pointBackgroundColor: 'red',
+      label: 'Kein Verkauf',
+      pointRadius: 10,
+    },
+    {
+      data: [
+        { x: 4, y: 1.5}
+      ],
       borderColor: 'black',
-      backgroundColor: 'rgba(255,0,0,0.3)'
-    }
-];
-  public lineChartLegend = true;
-  public lineChartType = 'line';
-  public lineChartPlugins = [];
+      backgroundColor: 'black',
+      pointBorderColor: 'black',
+      pointBackgroundColor: 'black',
+      label: 'Retour',
+      pointRadius: 10,
+    },
+  ];
+  public scatterChartType: ChartType = 'scatter';
 
   constructor(private accountService: AccountService, private loginModalService: LoginModalService) {}
 
