@@ -28,8 +28,12 @@ public class Process implements Serializable {
     private String name;
 
     @NotNull
-    @Column(name = "code", nullable = false)
-    private String code;
+    @Column(name = "step", nullable = false)
+    private String step;
+
+    @NotNull
+    @Column(name = "level", nullable = false)
+    private Integer level;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -53,17 +57,30 @@ public class Process implements Serializable {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    public String getStep() {
+        return step;
     }
 
-    public Process code(String code) {
-        this.code = code;
+    public Process step(String step) {
+        this.step = step;
         return this;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setStep(String step) {
+        this.step = step;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public Process level(Integer level) {
+        this.level = level;
+        return this;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -89,7 +106,8 @@ public class Process implements Serializable {
         return "Process{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", code='" + getCode() + "'" +
+            ", step='" + getStep() + "'" +
+            ", level=" + getLevel() +
             "}";
     }
 }

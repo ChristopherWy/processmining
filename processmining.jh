@@ -1,6 +1,7 @@
 entity Process {
 	name String required,
-	code String required
+    step String required,
+	level Integer required
 }
 
 entity ProcessExecution {

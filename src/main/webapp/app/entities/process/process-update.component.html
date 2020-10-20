@@ -24,13 +24,29 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="processminingApp.process.code" for="field_code">Code</label>
-                    <input type="text" class="form-control" name="code" id="field_code"
-                           formControlName="code"/>
-                    <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+                    <label class="form-control-label" jhiTranslate="processminingApp.process.step" for="field_step">Step</label>
+                    <input type="text" class="form-control" name="step" id="field_step"
+                           formControlName="step"/>
+                    <div *ngIf="editForm.get('step')!.invalid && (editForm.get('step')!.dirty || editForm.get('step')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('code')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('step')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="processminingApp.process.level" for="field_level">Level</label>
+                    <input type="number" class="form-control" name="level" id="field_level"
+                           formControlName="level"/>
+                    <div *ngIf="editForm.get('level')!.invalid && (editForm.get('level')!.dirty || editForm.get('level')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('level')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('level')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
                         </small>
                     </div>
                 </div>
