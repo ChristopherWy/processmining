@@ -5,7 +5,7 @@ import { Subscription, combineLatest } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { IProcess } from 'app/shared/model/process.model';
+import {IProcess, Process} from 'app/shared/model/process.model';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ProcessService } from './process.service';
@@ -30,74 +30,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
     responsive: true,
   };
 
-  public scatterChartData: ChartDataSets[] = [
-    {
-      data: [
-        { x: 1, y: 1 }
-      ],
-      borderColor: 'blue',
-      backgroundColor: 'blue',
-      pointBorderColor: 'blue',
-      pointBackgroundColor: 'blue',
-      label: 'EMail Erstkontakt',
-      pointRadius: 10,
-    },
-    {
-      data: [
-        { x: 1, y: 2 }
-      ],
-      borderColor: 'blue',
-      backgroundColor: 'blue',
-      pointBorderColor: 'blue',
-      pointBackgroundColor: 'blue',
-      label: 'Telefon Erstontakt',
-      pointRadius: 10,
-    },
-    {
-      data: [
-        { x: 2, y: 1.5 }
-      ],
-      borderColor: 'green',
-      backgroundColor: 'green',
-      pointBorderColor: 'green',
-      pointBackgroundColor: 'green',
-      label: 'Beratungstermin',
-      pointRadius: 10,
-    },
-    {
-      data: [
-        { x: 3, y: 1 }
-      ],
-      borderColor: 'red',
-      backgroundColor: 'red',
-      pointBorderColor: 'red',
-      pointBackgroundColor: 'red',
-      label: 'Verkauf',
-      pointRadius: 10,
-    },
-    {
-      data: [
-        { x: 3, y: 2}
-      ],
-      borderColor: 'red',
-      backgroundColor: 'red',
-      pointBorderColor: 'red',
-      pointBackgroundColor: 'red',
-      label: 'Kein Verkauf',
-      pointRadius: 10,
-    },
-    {
-      data: [
-        { x: 4, y: 1.5}
-      ],
-      borderColor: 'black',
-      backgroundColor: 'black',
-      pointBorderColor: 'black',
-      pointBackgroundColor: 'black',
-      label: 'Retour',
-      pointRadius: 10,
-    },
-  ];
+  public scatterChartData: ChartDataSets[] = [];
   public scatterChartType: ChartType = 'scatter';
 
   constructor(
@@ -184,7 +117,32 @@ export class ProcessComponent implements OnInit, OnDestroy {
       });
     }
     this.processes = data || [];
+    this.setScatterChartData(this.processes);
     this.ngbPaginationPage = this.page;
+  }
+
+  setScatterChartData(data: Process[]): void {
+    this.scatterChartData = [];
+    for(let i = 0; i < data.length; i++) {
+      const process = data[i];
+      this.addScatterChartData(process);
+    }
+  }
+
+  addScatterChartData(process: any): void {
+    const nr = this.scatterChartData.length;
+    const data = {
+      data: [
+        { x: process.level, y: nr }
+      ],
+      borderColor: 'blue',
+      backgroundColor: 'blue',
+      pointBorderColor: 'blue',
+      pointBackgroundColor: 'blue',
+      label: process.step,
+      pointRadius: 10,
+    };
+    this.scatterChartData[nr] = data;
   }
 
   protected onError(): void {
