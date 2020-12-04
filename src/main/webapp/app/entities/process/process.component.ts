@@ -11,6 +11,8 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ProcessService } from './process.service';
 import { ProcessDeleteDialogComponent } from './process-delete-dialog.component';
 import {ChartDataSets, ChartOptions, ChartType} from "chart.js";
+import {ProcessUpdateComponent} from "./process-update.component";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'jhi-process',
@@ -25,6 +27,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  processUpdate: ProcessUpdateComponent = new ProcessUpdateComponent(this.processService, this.activatedRoute, new FormBuilder());
 
   public scatterChartOptions: ChartOptions = {
     responsive: true,

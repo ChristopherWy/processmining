@@ -10,13 +10,88 @@
         </button>
     </h2>
 
-    <div style="display: block;">
-        <canvas baseChart
-                [datasets]="scatterChartData"
-                [options]="scatterChartOptions"
-                [chartType]="scatterChartType">
-        </canvas>
-    </div>
+    <table>
+        <tr>
+            <th>
+                <div style="display: block;">
+                    <canvas baseChart
+                            [datasets]="scatterChartData"
+                            [options]="scatterChartOptions"
+                            [chartType]="scatterChartType">
+                    </canvas>
+                </div>
+            </th>
+            <th>
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <form name="editForm" role="form" novalidate (ngSubmit)="processUpdate.save()" [formGroup]="processUpdate.editForm">
+                            <h2 id="jhi-process-heading" jhiTranslate="processminingApp.process.home.createOrEditLabel">Create or edit a Process</h2>
+
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+
+                                <div class="form-group" [hidden]="!processUpdate.editForm.get('id')!.value">
+                                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="processminingApp.process.name" for="field_name">Name</label>
+                                    <input type="text" class="form-control" name="name" id="field_name"
+                                           formControlName="name"/>
+                                    <div *ngIf="processUpdate.editForm.get('name')!.invalid && (processUpdate.editForm.get('name')!.dirty || processUpdate.editForm.get('name')!.touched)">
+                                        <small class="form-text text-danger"
+                                               *ngIf="processUpdate.editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="processminingApp.process.step" for="field_step">Step</label>
+                                    <input type="text" class="form-control" name="step" id="field_step"
+                                           formControlName="step"/>
+                                    <div *ngIf="processUpdate.editForm.get('step')!.invalid && (processUpdate.editForm.get('step')!.dirty || processUpdate.editForm.get('step')!.touched)">
+                                        <small class="form-text text-danger"
+                                               *ngIf="processUpdate.editForm.get('step')?.errors?.required" jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="processminingApp.process.level" for="field_level">Level</label>
+                                    <input type="number" class="form-control" name="level" id="field_level"
+                                           formControlName="level"/>
+                                    <div *ngIf="processUpdate.editForm.get('level')!.invalid && (processUpdate.editForm.get('level')!.dirty || processUpdate.editForm.get('level')!.touched)">
+                                        <small class="form-text text-danger"
+                                               *ngIf="processUpdate.editForm.get('level')?.errors?.required" jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+                                        <small class="form-text text-danger"
+                                               [hidden]="!processUpdate.editForm.get('level')?.errors?.number" jhiTranslate="entity.validation.number">
+                                            This field should be a number.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="processUpdate.previousState()">
+                                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                </button>
+
+                                <button type="submit" id="save-entity" [disabled]="processUpdate.editForm.invalid || processUpdate.isSaving" class="btn btn-primary">
+                                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </th>
+        </tr>
+    </table>
 
     <jhi-alert-error></jhi-alert-error>
 
