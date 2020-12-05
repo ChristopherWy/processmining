@@ -40,7 +40,6 @@ export class ProcessUpdateComponent implements OnInit {
   }
 
   previousState(): void {
-    window.location.reload();
     //window.history.back();
   }
 
