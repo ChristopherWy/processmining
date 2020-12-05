@@ -40,13 +40,14 @@ export class ProcessUpdateComponent implements OnInit {
   }
 
   previousState(): void {
-    window.history.back();
+    window.location.reload();
+    //window.history.back();
   }
 
   save(): void {
     this.isSaving = true;
     const process = this.createFromForm();
-    if (process.id !== undefined) {
+    if (process.id !== undefined && process.id !== null) {
       this.subscribeToSaveResponse(this.processService.update(process));
     } else {
       this.subscribeToSaveResponse(this.processService.create(process));
